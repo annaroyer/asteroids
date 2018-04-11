@@ -8,35 +8,9 @@ class MostDangerousDayController < ApplicationController
     nasa_days = raw_nasa_days.map do |raw_nasa_day|
       NasaDay.new(raw_nasa_day)
     end
-    @most_dangerous_day = nasa_days.max do |a, b|
-      a.near_earth_objects.count <=> b.near_earth_objects.count
-    end
-  end
-end
-
-class NasaDay
-  attr_reader :date, :asteroids
-
-  def initialize(attrs)
-    @date = Time.new(attrs.first.to_s).strftime("%B #{attrs.first.to_s.split('-').last.to_i}, %Y")
-    @asteroids = attrs.last.map do |raw_asteroid|
-      Asteroid.new(raw_asteroid)
-    end
-  end
-
-  def near_earth_objects
-    asteroids.select do |asteroid|
-      asteroid.hazardous
-    end
-  end
-end
-
-class Asteroid
-  attr_reader :neo_reference_id, :name, :hazardous
-
-  def initialize(attrs)
-    @neo_reference_id = attrs[:neo_reference_id]
-    @name = attrs[:name].split(' ').last(2).join(' ')
-    @hazardous = attrs[:is_potentially_hazardous_asteroid]
+    # @most_dangerous_day = nasa_days.max do |a, b|
+    #   a.near_earth_objects.count <=> b.near_earth_objects.count
+    # end
+    @most_dangerous_day = NasaService.most_dangerous_day(params[:start_date], params[:end_date])
   end
 end
