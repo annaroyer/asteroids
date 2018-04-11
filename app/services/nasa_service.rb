@@ -6,6 +6,13 @@ class NasaService
     end
   end
 
+  def self.asteroid(neo_reference_id)
+    conn = Faraday.new("https://api.nasa.gov/neo/rest/v1/neo/#{neo_reference_id}?api_key=OMmFoPYWpMrG4LOLC4a8rTpiP7Dk36Ul87c2vSnj")
+    response = conn.get
+    raw_asteroid = JSON.parse(response.body, symbolize_names: true)
+    Asteroid.new(raw_asteroid)
+  end
+
   private
 
     def self.get_nasa_days(start_date, end_date)
