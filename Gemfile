@@ -22,6 +22,7 @@ group :development, :test do
   gem 'capybara'
   gem "factory_bot_rails"
   gem 'pry'
+  gem 'database_cleaner'
 end
 
 group :development do
