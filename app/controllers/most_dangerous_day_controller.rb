@@ -36,7 +36,7 @@ class Asteroid
 
   def initialize(attrs)
     @neo_reference_id = attrs[:neo_reference_id]
-    @name = attrs[:name].split('(').last[0...-1]
+    @name = attrs[:name].split(' ').last(2).join(' ')
     @hazardous = attrs[:is_potentially_hazardous_asteroid]
   end
 end
