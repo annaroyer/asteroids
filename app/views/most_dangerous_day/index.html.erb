@@ -1,6 +1,6 @@
 <h1 class="page-header">MOST DANGEROUS DAY</h1>
 <p><%= @start_date %> - <%= @end_date %></p>
-<h4 class="sub-header">January 1, 2018 has 3 potentially dangerous near earth objects</h4>
+<h4 class="sub-header"><%= @most_dangerous_day.date %> has <%= @most_dangerous_day.near_earth_objects.count %> potentially dangerous near earth objects</h4>
 <p class="bold-text"><strong>Name: (2014 KT76)</strong></p>
 <p class="bold-text"><strong>NEO Reference ID: </strong>3672906</p>
 <p class="bold-text"><strong>Name: (2001 LD)</strong></p>
