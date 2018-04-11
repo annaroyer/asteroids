@@ -9,8 +9,7 @@ describe "A guest user visits the root page and enters a start date and end date
     click_on 'Determine Most Dangerous Day'
 
     expect(current_path).to eq('/most_dangerous_day')
-    expect(page).to have_content('Most Dangerous Day')
-    expect(page).to have_html('h1', with: 'Most Dangerous Day')
+    expect(page).to have_content('MOST DANGEROUS DAY')
     expect(page).to have_content("January 1, 2018 - January 7, 2018")
     expect(page).to have_content("January 1, 2018 has 3 potentially dangerous near earth objects")
     expect(page).to have_content("Name: (2014 KT76)")
