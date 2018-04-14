@@ -15,11 +15,17 @@ describe Asteroid do
     end
 
     it 'has a name' do
-      expect(@asteroid.name).to eq("(2000 TG2)")
+      expect(@asteroid.name).to eq("439898 (2000 TG2)")
     end
 
     it 'can be hazardous' do
       expect(@asteroid.hazardous).to eq(false)
+    end
+  end
+
+  context 'instance methods' do
+    it 'has a nickname' do
+      expect(@asteroid.nickname).to eq("(2000 TG2)")
     end
   end
 end
