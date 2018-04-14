@@ -1,8 +1,8 @@
 class NasaDay
-  attr_reader :date, :asteroids
+  attr_reader :date
 
   def initialize(attrs)
-    @date = Time.parse(attrs.first.to_s).strftime('%B %e, %Y')
+    @date = Time.parse(attrs.first.to_s).strftime('%B%e, %Y')
     @asteroids = attrs.last.map do |raw_asteroid|
       Asteroid.new(raw_asteroid)
     end
@@ -19,4 +19,7 @@ class NasaDay
       new(raw_day)
     end
   end
+
+  private
+    attr_reader :asteroids
 end
