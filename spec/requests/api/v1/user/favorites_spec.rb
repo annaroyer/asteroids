@@ -22,8 +22,8 @@ describe 'As a registered user' do
       expect(favorites.first[:id]).to eq(1)
       expect(favorites.first[:neo_reference_id]).to eq("2153306")
       expect(favorites.first[:user_id]).to eq(1)
-      expect(favorites.first[:asteriod][:name]).to eq("153306 (2001 JL1)")
-      expect(favorites.first[:asteriod][:is_potentially_hazardous_asteroid]).to eq(false)
+      expect(favorites.first[:asteroid][:name]).to eq("153306 (2001 JL1)")
+      expect(favorites.first[:asteroid][:is_potentially_hazardous_asteroid]).to eq(false)
     end
   end
 
