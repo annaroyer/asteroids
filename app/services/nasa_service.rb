@@ -1,7 +1,7 @@
 class NasaService
 
   def self.asteroid(neo_reference_id)
-    raw_asteroid = get_url('neo', {neo_reference_id: neo_reference_id})
+    raw_asteroid = get_url("neo/#{neo_reference_id}")
     Asteroid.new(raw_asteroid)
   end
 
