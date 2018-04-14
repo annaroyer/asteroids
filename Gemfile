@@ -16,13 +16,18 @@ gem 'faraday'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'figaro'
 
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
+end
+
+group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem "factory_bot_rails"
-  gem 'pry'
   gem 'database_cleaner'
+  gem 'webmock'
 end
 
 group :development do
