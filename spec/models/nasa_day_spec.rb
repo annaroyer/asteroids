@@ -12,7 +12,7 @@ describe NasaDay do
   context 'instance methods' do
     describe '#near_earth_objects' do
       it 'returns all potentially hazardious asteroids' do
-        expect(subject.near_earth_objects.count).to eq(10)
+        expect(subject.near_earth_objects.count).to eq(2)
       end
     end
   end
@@ -20,7 +20,18 @@ describe NasaDay do
   context 'class methods' do
     describe '.all_in_range' do
       it 'returns all days within a range' do
-        
+        days_in_range = File.open('./spec/fixtures/days_in_range.json')
+        stub_request(:get, "https://api.nasa.gov/neo/rest/v1/feed?api_key=#{ENV['NASA_API_KEY']}&end_date=2018-01-07&start_date=2018-01-01")
+          .to_return(status: 200, body: days_in_range, headers: {})
+
+        dates = {start_date: '2018-01-01', end_date: '2018-01-07'}
+
+        nasa_days = NasaDay.all_in_range(dates)
+
+        expect(nasa_days.count).to eq(7)
+        nasa_days.each do |day|
+          expect(day.class).to eq(NasaDay)
+        end
       end
     end
   end
