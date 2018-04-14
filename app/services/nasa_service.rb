@@ -11,20 +11,20 @@ class NasaService
     Asteroid.new(raw_asteroid)
   end
 
-  private
-
-    def self.get_nasa_days(params)
-      get_url('feed', params)[:near_earth_objects].map do |day|
-        NasaDay.new(day)
-      end
+  def self.get_nasa_days(params)
+    get_url('feed', params)[:near_earth_objects].map do |day|
+      NasaDay.new(day)
     end
+  end
+
+  def self.get_url(url, params={})
+    response = conn.get url, params.merge(api_key: ENV['NASA_API_KEY'])
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  private
 
     def self.conn
       Faraday.new('https://api.nasa.gov/neo/rest/v1')
-    end
-
-    def self.get_url(url, params={})
-      response = conn.get url, params.merge(api_key: ENV['NASA_API_KEY'])
-      JSON.parse(response.body, symbolize_names: true)
     end
 end
