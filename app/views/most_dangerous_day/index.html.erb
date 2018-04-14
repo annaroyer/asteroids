@@ -1,7 +1,7 @@
 <h1 class="page-header">MOST DANGEROUS DAY</h1>
-<p><%= @start_date %> - <%= @end_date %></p>
-<h4 class="sub-header"><%= @most_dangerous_day.date %> has <%= @most_dangerous_day.near_earth_objects.count %> potentially dangerous near earth objects</h4>
-<% @most_dangerous_day.near_earth_objects.each do |asteroid| %>
+<p><%= @nasa_days.start_date %> - <%= @nasa_days.end_date %></p>
+<h4 class="sub-header"><%= @nasa_days.most_dangerous.date %> has <%= @nasa_days.most_dangerous.near_earth_objects.count %> potentially dangerous near earth objects</h4>
+<% @nasa_days.most_dangerous.near_earth_objects.each do |asteroid| %>
   <p class="bold-text"><strong>Name: <%= asteroid.name %></strong></p>
   <p class="bold-text"><strong>NEO Reference ID: </strong><%= asteroid.neo_reference_id %></p>
 <% end %>
