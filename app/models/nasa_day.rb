@@ -13,4 +13,10 @@ class NasaDay
       asteroid.hazardous
     end
   end
+
+  def self.all_in_range(dates)
+    NasaService.get_url('feed', dates)[:near_earth_objects].map do |raw_day|
+      new(raw_day)
+    end
+  end
 end
