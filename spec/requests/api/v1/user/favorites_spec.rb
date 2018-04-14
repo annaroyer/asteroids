@@ -6,7 +6,10 @@ describe 'As a registered user' do
       uncle_jesse = User.create(name: "Jesse Katsopolis", email: "uncle.jesse@example.com")
       uncle_jesse.create_api_key(value: "abc123")
       uncle_jesse.favorites.create(neo_reference_id: "2153306")
-    end
+      asteroid = File.open('./spec/fixtures/asteroid.json')
+      stub_request(:get, "https://api.nasa.gov/neo/rest/v1/neo/2153306?api_key=#{ENV['NASA_API_KEY']}")
+        .to_return(status: 200, body: asteroid, headers: {})
+      end
 
     scenario 'Then I should receive a JSON response' do
       uncle_jesse = User.create(name: "Jesse Katsopolis", email: "uncle.jesse@example.com")
