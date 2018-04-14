@@ -7,14 +7,14 @@ class NasaService
   end
 
   def self.asteroid(neo_reference_id)
-    raw_asteroid = get_url('/neo', {neo_reference_id: neo_reference_id})
+    raw_asteroid = get_url('neo', {neo_reference_id: neo_reference_id})
     Asteroid.new(raw_asteroid)
   end
 
   private
 
     def self.get_nasa_days(params)
-      get_url('/feed', params)[:near_earth_objects].map do |day|
+      get_url('feed', params)[:near_earth_objects].map do |day|
         NasaDay.new(day)
       end
     end
@@ -24,10 +24,7 @@ class NasaService
     end
 
     def self.get_url(url, params={})
-      response = conn.get(url) do |req|
-        req.params['api_key'] = ENV['NASA_API_KEY']
-        req.body = params
-      end
+      response = conn.get url, params.merge(api_key: ENV['NASA_API_KEY'])
       JSON.parse(response.body, symbolize_names: true)
     end
 end
