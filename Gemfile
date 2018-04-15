@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'rails', '~> 5.1.6'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
@@ -15,12 +14,21 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'faraday'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'figaro'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
+  gem 'database_cleaner'
+end
+
+group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem "factory_bot_rails"
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do
