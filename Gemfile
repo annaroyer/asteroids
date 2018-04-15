@@ -20,13 +20,13 @@ gem 'figaro'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
+  gem 'database_cleaner'
 end
 
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem "factory_bot_rails"
-  gem 'database_cleaner'
   gem 'webmock'
   gem 'vcr'
 end
